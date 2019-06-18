@@ -1,17 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vkono
- * Date: 19/03/2019
- * Time: 00:57
- */
 
 namespace LaraCourse\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(Request $req){
-        return 'Hello World!!'.$req->input('name');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }

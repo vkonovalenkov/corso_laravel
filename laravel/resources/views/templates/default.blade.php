@@ -27,7 +27,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">IMG GALLERY</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +37,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+            @if(Auth::check())
             <li class="nav-item active">
 
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -51,20 +51,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('photos.create')}}">New Image</a>
             </li>
-            @if(Auth::check())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('albums')}}">Albums</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{route('album.create')}}">New Album</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{route('photos.create')}}">New Image</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{route('categories.index')}}">Categories</a>
-                </li>
-            @endif
         </ul>
 
 
@@ -72,6 +58,7 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        @endif
         <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
             @if (Auth::guest())
@@ -95,17 +82,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
-                        @if(Auth::user()->isAdmin())
-                            <li>
-                                <a href="{{route('admin')}}">ADMIN</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{route('user-list')}}">Users</a>
-                            </li>
-
-                            </li>
-                        @endif
+                        
                     </ul>
                 </li>
             @endif
