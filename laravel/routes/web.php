@@ -66,7 +66,8 @@ function (){
 
     /*
      *
-     */Route::get('/photos',function (){
+     */
+    Route::get('/photos',function (){
         return Photo::all();
 
     });

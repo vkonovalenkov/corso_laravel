@@ -2,7 +2,7 @@
 <project version="4">
   <component name="LaravelPluginSettings">
     <option name="pluginEnabled" value="true" />
-    <option name="routerNamespace" value="" />
+    <option name="routerNamespace" value="LaraCourse" />
     <option name="mainLanguage" value="en" />
   </component>
 </project>

@@ -3,6 +3,7 @@
 namespace LaraCourse\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use LaraCourse\Album;
 
 class AlbumUpdateRequest extends FormRequest
 {
@@ -13,6 +14,12 @@ class AlbumUpdateRequest extends FormRequest
      */
     public function authorize()
     {
+        //$this->id = 1;
+        $album = Album::find($this->id);
+        if(\Gate::denies('manage-album',$album)){
+
+            return false;
+        }
         return true;
     }
 
