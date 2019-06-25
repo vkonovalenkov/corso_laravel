@@ -1,0 +1,48 @@
+DELETE http://laravel.local2/albums/4?_token=9IDiQZGA15olPpJ60e9YAjX3z4gpRi8P6PLn7zZm
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T014640.419.html
+
+###
+
+DELETE http://laravel.local2/albums/4?_token=9IDiQZGA15olPpJ60e9YAjX3z4gpRi8P6PLn7zZm
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T011115.405.html
+
+###
+
+DELETE http://laravel.local2/albums/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T010633.405.html
+
+###
+
+DELETE http://laravel.local2/albums/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T010331.405.html
+
+###
+
+DELETE http://laravel.local2/albums/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T010112.405.html
+
+###
+
+GET http://laravel.local2/albums/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-30T125941.200.json
+
+###
+

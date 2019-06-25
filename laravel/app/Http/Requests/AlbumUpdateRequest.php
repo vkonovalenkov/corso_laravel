@@ -16,10 +16,10 @@ class AlbumUpdateRequest extends FormRequest
     {
         //$this->id = 1;
         $album = Album::find($this->id);
-        if(\Gate::denies('manage-album',$album)){
+        /*if(\Gate::denies('update',$album)){
 
             return false;
-        }
+        }*/
         return true;
     }
 

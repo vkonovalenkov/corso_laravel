@@ -108,11 +108,14 @@ class AlbumsController extends Controller
         //$sql = 'select id,album_name,description from albums where id = :id';
         //$album = DB::select($sql,['id' => $id]);
         $album = Album::find($id);
+        Auth::user()->can('update',$album);
+        $this->authorize('edit',$album);
         //dd($album->user);
 
-        if(\Gate::denies('manage-album',$album)){
+        /*if(\Gate::denies('manage-album',$album)){
             abort(401,'Unauthorized');
-        }
+        }*/
+
 
         /*if($album->user->id != Auth::user()->$id){
             abort(401,'Unauthorized');
@@ -133,9 +136,10 @@ class AlbumsController extends Controller
         );
         */
         $album = Album::find($id);
-        if(\Gate::denies('manage-album',$album)){
+        $this->authorize('update',$album);
+        /*if(\Gate::denies('manage-album',$album)){
             abort(401,'Unauthorized');
-        }
+        }*/
         $album->album_name = request()->input('name');
         $album->description = request()->input('description');
         $album->user_id = $req->user()->id;
