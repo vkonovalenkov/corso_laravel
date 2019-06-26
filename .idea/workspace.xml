@@ -2,8 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3c3d3aa-9946-4b15-a077-4b3f7f6208af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/laravel/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/config/database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.env_test" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/dataSources/2163f52a-da53-414a-bb63-36a256813fe0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/dictionaries/vkono.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T010112.405.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T010331.405.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T010633.405.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T011115.405.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T014640.419.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/2019-04-30T125941.200.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/laravel.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Policies/AlbumPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Policies/PhotoPolicy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/resources/views/errors/401.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/CreatesApplication.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/Feature/ExampleTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/TestCase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/tests/Unit/ExampleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/.idea/laravel-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/.idea/laravel-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Album.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Album.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/AlbumsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/AlbumsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/PhotosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/PhotosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Requests/AlbumUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Requests/AlbumUpdateRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,11 +47,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/.env">
           <provider selected="true" editor-type-id="text-editor">
@@ -43,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1503" />
@@ -80,6 +116,12 @@
               <item name="database" type="462c0819:PsiDirectoryNode" />
               <item name="seeds" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="corso_laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="corso_laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -88,9 +130,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -115,23 +158,19 @@
       <option name="presentableId" value="Default" />
       <updated>1561018475880</updated>
       <workItem from="1561018491105" duration="4996000" />
+      <workItem from="1561534926823" duration="450000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4996000" />
+    <option name="totallyTimeSpent" value="5446000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973147" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19548872" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -139,10 +178,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32998884" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">

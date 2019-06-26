@@ -35,8 +35,7 @@ Route::get('welcome/{name?}/{lastname?}/{age?}', 'WelcomeController@welcome')
     ])
 ;
 
-
-
+    
 //ALBUMS
 Route::group(['middleware'=>'auth'],
 function (){
@@ -49,7 +48,8 @@ function (){
     //Route::get('/albums','AlbumsController@index')->name('albums')->middleware('auth');
     Route::get('/albums','AlbumsController@index')->name('albums');
     Route::delete('/albums/{album}','AlbumsController@delete')->where('album','[0-9]+');
-    Route::get('/albums/{id}','AlbumsController@show')->where('id','[0-9]+');
+    //Route::get('/albums/{id}','AlbumsController@show_album')->where('id','[0-9]+');
+    Route::get('/albums/{album}','AlbumsController@show')->where('id','[0-9]+')->middleware('can:view,album');
 
     Route::get('/albums/create','AlbumsController@create')->name('album.create');
 
@@ -66,7 +66,8 @@ function (){
 
     /*
      *
-     */Route::get('/photos',function (){
+     */
+    Route::get('/photos',function (){
         return Photo::all();
 
     });

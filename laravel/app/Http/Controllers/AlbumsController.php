@@ -2,7 +2,9 @@
 
 namespace LaraCourse\Http\Controllers;
 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use LaraCourse\Album;
@@ -13,6 +15,14 @@ use LaraCourse\Http\Requests\AlbumRequest;
 
 class AlbumsController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('auth');
+        //$this->middleware('auth')->only(['create','edit']);
+        //$this->middleware('auth')->except(['index']);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -22,8 +32,13 @@ class AlbumsController extends Controller
         //return Album::all();
         //$sql = 'select * from albums WHERE 1=1 ';
         //$queryBuilder = DB::table('albums')->orderBy('id','DESC');
+
         $queryBuilder = Album::orderBy('id','DESC')
             ->withCount('photos');
+        //dd(Auth::user());
+        //dd($request);
+        $queryBuilder->where('user_id',Auth::user()->id);
+
         if($request->has('id')){
             $queryBuilder->where('id','=',$request->input('id'));
         }
@@ -81,7 +96,7 @@ class AlbumsController extends Controller
         }
         return ''.$res;
     }
-    public function show($id)
+    public function show_album($id)
     {
         $sql = 'SELECT *  FROM albums WHERE id=:id';
         //dd($id);
@@ -93,7 +108,19 @@ class AlbumsController extends Controller
         //$sql = 'select id,album_name,description from albums where id = :id';
         //$album = DB::select($sql,['id' => $id]);
         $album = Album::find($id);
-        //dd($album);
+        Auth::user()->can('update',$album);
+        $this->authorize('edit',$album);
+        //dd($album->user);
+
+        /*if(\Gate::denies('manage-album',$album)){
+            abort(401,'Unauthorized');
+        }*/
+
+
+        /*if($album->user->id != Auth::user()->$id){
+            abort(401,'Unauthorized');
+        }
+        */
         return view('albums.editalbum')->with('album',$album);
     }
 
@@ -109,9 +136,13 @@ class AlbumsController extends Controller
         );
         */
         $album = Album::find($id);
+        $this->authorize('update',$album);
+        /*if(\Gate::denies('manage-album',$album)){
+            abort(401,'Unauthorized');
+        }*/
         $album->album_name = request()->input('name');
         $album->description = request()->input('description');
-        $album->user_id = 1;
+        $album->user_id = $req->user()->id;
         $this->processFile($id, $req, $album);
         $res = $album->save();
         /*$data = request()->only(['name','description']);
@@ -159,7 +190,7 @@ class AlbumsController extends Controller
         $album = new Album();
         $album->album_name = $request->input('name');
         $album->description = $request->input('description');
-        $album->user_id = 1;
+        $album->user_id = $request->user()->id;
 
         $res = $album->save();
         if($res){
@@ -209,6 +240,12 @@ class AlbumsController extends Controller
         $images = Photo::where('album_id', $album->id)->latest()->paginate(env('IMG_PER_PAGE'));
         return view('images.albumimages', compact('album','images'));
     }
+
+    public function show(Album $album){
+        echo 'SHOW';
+        dd($album);
+    }
+
 
 
 }
