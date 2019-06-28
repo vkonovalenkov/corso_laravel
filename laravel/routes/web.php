@@ -37,23 +37,29 @@ Route::get('welcome/{name?}/{lastname?}/{age?}', 'WelcomeController@welcome')
 
     
 //ALBUMS
-Route::group(['middleware'=>'auth'],
+Route::group(
+    [
+        'middleware'=>'auth',
+        'prefix'=>'dashboard'
+    ],
 function (){
 
     Route::post('/','AlbumsController@index')->name('albums');
     Route::get('/','AlbumsController@index')->name('albums');
-    Route::get('/home','AlbumsController@index')->name('albums');
+    //Route::get('/home','AlbumsController@index')->name('albums');
     Route::post('/home','AlbumsController@index')->name('albums');
 
     //Route::get('/albums','AlbumsController@index')->name('albums')->middleware('auth');
     Route::get('/albums','AlbumsController@index')->name('albums');
-    Route::delete('/albums/{album}','AlbumsController@delete')->where('album','[0-9]+');
+    Route::delete('/albums/{album}','AlbumsController@delete')
+        ->name('album.delete')
+        ->where('album','[0-9]+');
     //Route::get('/albums/{id}','AlbumsController@show_album')->where('id','[0-9]+');
-    Route::get('/albums/{album}','AlbumsController@show')->where('id','[0-9]+')->middleware('can:view,album');
+    //Route::get('/albums/{album}','AlbumsController@show')->where('id','[0-9]+')->middleware('can:view,album');
 
     Route::get('/albums/create','AlbumsController@create')->name('album.create');
 
-    Route::get('/albums/{id}/edit','AlbumsController@edit');
+    Route::get('/albums/{id}/edit','AlbumsController@edit')->where('id','[0-9]+')->name('album.edit');
 
     Route::patch('/albums/{id}','AlbumsController@store');
 

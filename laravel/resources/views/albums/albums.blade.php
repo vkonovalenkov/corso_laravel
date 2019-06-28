@@ -19,12 +19,12 @@
                 <div style="text-align:right;">
                         <a href="{{route('photos.create')}}?album_id={{$album->id}}" class="btn btn-primary">NEW IMAGE</a>
                     @if($album->photos_count)
-                    <a href="/albums/{{$album->id}}/images" class="btn btn-primary">VIEW IMAGES ({{
+                    <a href="{{route('album.getimages',$album->id)}}" class="btn btn-primary">VIEW IMAGES ({{
                         $album->photos_count
                     }})</a>
                     @endif
-                    <a href="/albums/{{$album->id}}/edit" class="btn btn-primary">UPDATE</a>
-                    <a id="delete" href="/albums/{{$album->id}}" class="btn btn-danger">DELETE</a>
+                    <a href="{{route('album.edit',$album->id)}}" class="btn btn-primary">UPDATE</a>
+                    <a id="delete" href="{{route('album.delete',$album->id)}}" class="btn btn-danger">DELETE</a>
                 </div>
             </li>
         @endforeach
