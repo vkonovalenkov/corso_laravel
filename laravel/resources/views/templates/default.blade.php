@@ -15,9 +15,10 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="{{url('/')}}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{url('/')}}/css/fontawesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('/')}}/css/lightbox.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    
     <!-- Custom styles for this template -->
     <style>
         body{

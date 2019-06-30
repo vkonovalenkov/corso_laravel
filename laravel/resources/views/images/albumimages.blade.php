@@ -17,15 +17,17 @@
         <tr>
             <td>{{$image->created_at}}</td>
             <td>{{$image->name}}</td>
-            <td>{{$album->album_name}}</td>
+            <td><a href="{{route('album.edit',$image->album_id)}}" >{{$album->album_name}}</a> </td>
             <td>
                 <img width="120" src="{{asset($image->image_path)}}">
             </td>
             <td>
 
-                <a  href="{{route('photos.edit',$image->id)}}" class="btn btn-sm btn-primary">MODIFICA</a>
+                <a title="Edit Picture" href="{{route('photos.edit',$image->id)}}" class="btn btn-sm btn-primary">
+                    <span class="fa fa-pen"></span></a>
 
-                <a  href="{{route('photos.destroy',$image->id)}}" class="btn btn-sm btn-danger">DELETE</a>
+                <a title="Delete Picture" href="{{route('photos.destroy',$image->id)}}" class="btn btn-sm btn-danger">
+                    <span class="fa fa-minus"></span></a>
             </td>
         </tr>
         @empty
