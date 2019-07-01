@@ -6,8 +6,8 @@
             {{session()->get('message')}}
         @endcomponent
     @endif
-    <form>
-        <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
+
+
 
     <table class="table table-striped">
         <thead>
@@ -21,30 +21,49 @@
         </thead>
 
         @foreach($albums as $album)
-            <tr >
+            <tr id="tr{{$album->id}}">
                 <td>({{$album->id}}){{$album->album_name}}{{
                         $album->photos_count
-                    }}pictures</td>
+                    }}pictures
+                </td>
                 <td>
                 @if($album->album_thumb)
                     <img width="300" src="{{asset($album->path)}}" title="{{$album->album_name}}" alt="{{$album->album_name}}">
                 @endif
                 </td>
                 <td>{{$album->user->fullname}}</td>
-                <td>{{$album->created_at}}</td>
+                <td>{{$album->created_at->format('d/m/Y H:i')}}</td>
                 <td>
+                    <div class="row">
+                        <div class="col-3">
                         <a title="Add picture" href="{{route('photos.create')}}?album_id={{$album->id}}" class="btn btn-success">
                             <span class="fa fa-plus"></span>
                         </a>
-                    @if($album->photos_count)
-                    <a title="View Images" href="{{route('album.getimages',$album->id)}}" class="btn btn-primary">
-                        <span class="fa fa-search"></span></a>
-                    @endif
-                    <a title="Update album" href="{{route('album.edit',$album->id)}}" class="btn btn-primary">
-                        <span  class="fa fa-pen"></span></a>
-                    <a title="Delete Album" id="delete" href="{{route('album.delete',$album->id)}}" class="btn btn-danger">
-                        <span class="fa fa-minus"></span>
-                    </a>
+                        </div>
+                        <div class="col-3">
+                        @if($album->photos_count)
+                        <a title="View Images" href="{{route('album.getimages',$album->id)}}" class="btn btn-primary">
+                            <span class="fa fa-search"></span>
+                        </a>
+                            @else
+                                <span class="fa fa-search"></span>
+                        @endif
+                        </div>
+                        <div class="col-3">
+                        <a title="Update album" href="{{route('album.edit',$album->id)}}" class="btn btn-primary">
+                            <span  class="fa fa-pen"></span>
+                        </a>
+                        </div>
+                        <div class="col-3">
+                            <form id="form{{$album->id}}" method="post" action="{{route('album.delete',$album->id)}}">
+                            @csrf
+                                @method('DELETE')
+                            <button id="{{$album->id}}" title="Delete Album" id="delete" class="btn btn-danger">
+                            <span class="fa fa-minus"></span>
+                            </button>
+                            </form>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @endforeach
@@ -56,34 +75,38 @@
             </td>
         </tr>
     </table>
-    </form>
+
 @endsection
 @section('footer')
     @parent
     <script>
         $('document').ready(function () {
+            //alert('ok');
             $('div.alert').fadeOut(5000);
-           $('ul').on('click','a[id="delete"]',function(ele) {
-               ele.preventDefault();
+           $('table').on('click','button.btn-danger',function(evt) {
+               evt.preventDefault();
+               var id = evt.target.id;
+               var f =$('#form'+id);
                //alert(ele.target.href);
-               var urlAlbum = $(this).attr('href');
-               var li = ele.target.parentNode.parentNode;
+               var urlAlbum = f.attr('action');
+               var tr = $('#tr'+id);
                $.ajax(
                    urlAlbum,
                    {
                        data:{
-                         '_token':$('#_token').val()
+                         '_token':'{{csrf_token()}}'
                        },
                        method: 'DELETE',
                        complete: function (resp) {
                            //alert(resp.responseText);
-                           console.log(resp);
+                           console.error(resp+'---resp');
                            if (resp.responseText == 1) {
-                               li.parentNode.removeChild(li);
+                               //tr.parentNode.removeChild(tr);
+                               tr.remove();
                                //alert(resp.responseText);
                                //$(li).remove();
                            } else {
-                               //alert('Problem contacting server');
+                               alert('Problem contacting server');
                            }
                        }
                    }

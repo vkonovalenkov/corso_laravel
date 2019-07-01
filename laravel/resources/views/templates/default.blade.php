@@ -18,7 +18,7 @@
     <link href="{{url('/')}}/css/fontawesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('/')}}/css/lightbox.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-    
+
     <!-- Custom styles for this template -->
     <style>
         body{
