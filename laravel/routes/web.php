@@ -42,66 +42,78 @@ Route::group(
         'middleware'=>'auth',
         'prefix'=>'dashboard'
     ],
-function (){
+    function (){
 
-    Route::post('/','AlbumsController@index')->name('albums');
-    Route::get('/','AlbumsController@index')->name('albums');
-    //Route::get('/home','AlbumsController@index')->name('albums');
-    Route::post('/home','AlbumsController@index')->name('albums');
+        Route::post('/','AlbumsController@index')->name('albums');
+        Route::get('/','AlbumsController@index')->name('albums');
+        //Route::get('/home','AlbumsController@index')->name('albums');
+        Route::post('/home','AlbumsController@index')->name('albums');
 
-    //Route::get('/albums','AlbumsController@index')->name('albums')->middleware('auth');
-    Route::get('/albums','AlbumsController@index')->name('albums');
-    Route::delete('/albums/{album}','AlbumsController@delete')
-        ->name('album.delete')
-        ->where('album','[0-9]+');
-    //Route::get('/albums/{id}','AlbumsController@show_album')->where('id','[0-9]+');
-    //Route::get('/albums/{album}','AlbumsController@show')->where('id','[0-9]+')->middleware('can:view,album');
+        //Route::get('/albums','AlbumsController@index')->name('albums')->middleware('auth');
+        Route::get('/albums','AlbumsController@index')->name('albums');
+        Route::delete('/albums/{album}','AlbumsController@delete')
+            ->name('album.delete')
+            ->where('album','[0-9]+');
+        //Route::get('/albums/{id}','AlbumsController@show_album')->where('id','[0-9]+');
+        //Route::get('/albums/{album}','AlbumsController@show')->where('id','[0-9]+')->middleware('can:view,album');
 
-    Route::get('/albums/create','AlbumsController@create')->name('album.create');
+        Route::get('/albums/create','AlbumsController@create')->name('album.create');
 
-    Route::get('/albums/{id}/edit','AlbumsController@edit')->where('id','[0-9]+')->name('album.edit');
+        Route::get('/albums/{id}/edit','AlbumsController@edit')->where('id','[0-9]+')->name('album.edit');
 
-    Route::patch('/albums/{id}','AlbumsController@store');
+        Route::patch('/albums/{id}','AlbumsController@store');
 
-    Route::post('/albums','AlbumsController@save')
-        ->name('album.save');
+        Route::post('/albums','AlbumsController@save')
+            ->name('album.save');
 
-    Route::get('/albums/{album}/images','AlbumsController@getImages')
-        ->name('album.getimages')
-        ->where('album','[0-9]+');
+        Route::get('/albums/{album}/images','AlbumsController@getImages')
+            ->name('album.getimages')
+            ->where('album','[0-9]+');
 
-    /*
-     *
-     */
-    Route::get('/photos',function (){
-        return Photo::all();
+        /*
+         *
+         */
+        Route::get('/photos',function (){
+            return Photo::all();
 
-    });
-    Route::get('/users',function (){
-        return User::all();
+        });
+        Route::get('/users',function (){
+            return User::all();
 
-    });
-    Route::get('usernoalbums', function (){
-        $usernoalbum = DB::table('users as u')
-            ->leftJoin('albums as a','u.id','a.user_id')
-            ->select('u.id','email','name','album_name')
-            //->whereNull('album_name')
-            ->whereRaw('album_name is null')
-            ->get();
+        });
+        Route::get('usernoalbums', function (){
+            $usernoalbum = DB::table('users as u')
+                ->leftJoin('albums as a','u.id','a.user_id')
+                ->select('u.id','email','name','album_name')
+                //->whereNull('album_name')
+                ->whereRaw('album_name is null')
+                ->get();
 
-        $usernoalbum = DB::table('users as u')
-            ->select('u.id','email','name')
-            //->whereNull('album_name')
-            ->whereRaw('NOT EXISTS (SELECT user_id,album_name FROM albums  where user_id = u.id)')
-            ->get();
+            $usernoalbum = DB::table('users as u')
+                ->select('u.id','email','name')
+                //->whereNull('album_name')
+                ->whereRaw('NOT EXISTS (SELECT user_id,album_name FROM albums  where user_id = u.id)')
+                ->get();
 
-        return $usernoalbum;
-    });
-    //images
-    Route::resource('photos', 'PhotosController');
+            return $usernoalbum;
+        });
+        //images
+        Route::resource('photos', 'PhotosController');
 
-}
-    );
+    }
+);
+//GALLERY
+Route::group(
+    [
+        'prefix'=>'gallery'
+    ],
+    function (){
+        Route::get('albums','GalleryController@index')->name('gallery.albums');
+        Route::get('/','GalleryController@index')->name('gallery.albums');
+        Route::get('album/{album}/images','GalleryController@showAlbumImages')->name('gallery.album.images');
+
+    }
+);
 
 
 Auth::routes();
