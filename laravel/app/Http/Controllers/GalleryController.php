@@ -17,9 +17,13 @@ class GalleryController extends Controller
     }
     public function showAlbumImages(Album $album)
     {
-        return view('gallery.images')->with('images',
-            Photo::whereAlbumId($album->id)->latest()->get()
-            );
+        return view(
+            'gallery.images',
+            [
+                'images'=>Photo::whereAlbumId($album->id)->latest()->get(),
+                'album'=>$album
+            ]
+        );
 
     }
 }

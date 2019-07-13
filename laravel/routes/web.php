@@ -118,4 +118,4 @@ Route::group(
 
 Auth::routes();
 
-//Route::get('/home','HomeController@index')->name('home');
+Route::get('/','GalleryController@index');
