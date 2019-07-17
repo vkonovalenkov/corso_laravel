@@ -10,9 +10,13 @@ class GalleryController extends Controller
 {
     public function index()
     {
+        $albums = Album::latest()->get();
+        foreach ($albums as $album){
+            return $album->categories;
+        }
             //dd(Album::latest()->get());
         return view('gallery.albums')->with('albums',
-                Album::latest()->get()
+            $albums
             );
     }
     public function showAlbumImages(Album $album)
