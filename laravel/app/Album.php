@@ -2,6 +2,7 @@
 namespace LaraCourse;
 use Illuminate\Database\Eloquent\Model;
 use LaraCourse\Models\AlbumCategory;
+use LaraCourse\Models\AlbumgalleryCategory;
 use LaraCourse\Models\Photo;
 use LaraCourse\User;
 
