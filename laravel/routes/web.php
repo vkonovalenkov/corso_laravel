@@ -35,7 +35,7 @@ Route::get('welcome/{name?}/{lastname?}/{age?}', 'WelcomeController@welcome')
     ])
 ;
 
-    
+
 //ALBUMS
 Route::group(['middleware'=>'auth'],
 function (){
