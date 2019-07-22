@@ -7,4 +7,4 @@
  */
 ?>
 @extends('templates.default')
-<h1>Unautorized</h1>
+<h1>NO DATA FOUND</h1>

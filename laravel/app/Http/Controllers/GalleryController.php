@@ -18,7 +18,7 @@ class GalleryController extends Controller
             $albums
             );
     }
-    public function showAlbumByCategory(AlbumCategory $category){
+    public function showAlbumsByCategory(AlbumCategory $category){
         return view('gallery.albums')->with('albums',
             $category->albums
         );

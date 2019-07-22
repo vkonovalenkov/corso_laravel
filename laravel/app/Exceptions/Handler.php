@@ -5,6 +5,7 @@ namespace LaraCourse\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -34,6 +35,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        
+        //dd($exception);
         parent::report($exception);
     }
 
