@@ -14,10 +14,12 @@
     <title>@yield('title','Home')</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="{{url('/')}}/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{url('/')}}/css/lightbox.css">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url('/')}}/css/fontawesome.css">
+    <link rel="stylesheet" href="{{url('/')}}/css/lightbox.css">
+    <link rel="stylesheet" href="{{url('/')}}/css/lightbox.min.css">
     <!-- Custom styles for this template -->
     <style>
         body{
@@ -27,6 +29,7 @@
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">IMG GALLERY</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +46,7 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/albums">Albums</a>
+                <a class="nav-link" href="{{route('albums')}}">Albums</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('album.create')}}">New Album</a>
@@ -101,13 +104,11 @@
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-    <script
-            src="https://code.jquery.com/jquery-3.4.0.min.js"
-            integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/js/lightbox.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="{{url('/')}}/js/lightbox.min.js"></script>
 @show
 </body>
 </html>

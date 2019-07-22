@@ -94,7 +94,11 @@ class AlbumsController extends Controller
                 Storage::disk($disk)->delete($thumbNail);
             }
         }
-        return ''.$res;
+        if(request()->ajax()){
+            return ''.$res;
+        }else{
+            return redirect()->route('albums');
+        }
     }
     public function show_album($id)
     {

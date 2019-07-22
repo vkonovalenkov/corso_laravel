@@ -16,5 +16,7 @@
             {{old('description',$album->description)}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{route('albums')}}" class="btn btn-info">Back</a>
+        <a href="{{route('album.getimages',$album->id)}}" class="btn btn-success">Album Image</a>
     </form>
 @stop

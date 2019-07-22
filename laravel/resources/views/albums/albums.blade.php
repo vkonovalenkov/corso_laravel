@@ -6,63 +6,107 @@
             {{session()->get('message')}}
         @endcomponent
     @endif
-    <form>
-        <input type="hidden" id="_token" name="_token" value="{{csrf_token()}}">
 
-    <ul class="list-group">
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Album name</td>
+            <td>Thumb</td>
+            <td>Creator</td>
+            <td>Created Date</td>
+            <td>&nbsp;</td>
+        </tr>
+        </thead>
+
         @foreach($albums as $album)
-            <li class="list-group-item justify-content-between">
-                ({{$album->id}}){{$album->album_name}}
+            <tr id="tr{{$album->id}}">
+                <td>({{$album->id}}){{$album->album_name}}{{
+                        $album->photos_count
+                    }}pictures
+                </td>
+                <td>
                 @if($album->album_thumb)
                     <img width="300" src="{{asset($album->path)}}" title="{{$album->album_name}}" alt="{{$album->album_name}}">
                 @endif
-                <div style="text-align:right;">
-                        <a href="{{route('photos.create')}}?album_id={{$album->id}}" class="btn btn-primary">NEW IMAGE</a>
-                    @if($album->photos_count)
-                    <a href="/albums/{{$album->id}}/images" class="btn btn-primary">VIEW IMAGES ({{
-                        $album->photos_count
-                    }})</a>
-                    @endif
-                    <a href="/albums/{{$album->id}}/edit" class="btn btn-primary">UPDATE</a>
-                    <a id="delete" href="/albums/{{$album->id}}" class="btn btn-danger">DELETE</a>
-                </div>
-            </li>
+                </td>
+                <td>{{$album->user->fullname}}</td>
+                <td>{{$album->created_at->format('d/m/Y H:i')}}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-3">
+                        <a title="Add picture" href="{{route('photos.create')}}?album_id={{$album->id}}" class="btn btn-success">
+                            <span class="fa fa-plus"></span>
+                        </a>
+                        </div>
+                        <div class="col-3">
+                        @if($album->photos_count)
+                        <a title="View Images" href="{{route('album.getimages',$album->id)}}" class="btn btn-primary">
+                            <span class="fa fa-search"></span>
+                        </a>
+                            @else
+                                <span class="fa fa-search"></span>
+                        @endif
+                        </div>
+                        <div class="col-3">
+                        <a title="Update album" href="{{route('album.edit',$album->id)}}" class="btn btn-primary">
+                            <span  class="fa fa-pen"></span>
+                        </a>
+                        </div>
+                        <div class="col-3">
+                            <form id="form{{$album->id}}" method="post" action="{{route('album.delete',$album->id)}}">
+                            @csrf
+                                @method('DELETE')
+                            <button id="{{$album->id}}" title="Delete Album" id="delete" class="btn btn-danger">
+                            <span class="fa fa-minus"></span>
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
         @endforeach
-            <div class="row">
+        <tr>
+            <td class="row" colspan="5">
                 <div class="col-md-8 push-2">
                     {{$albums->links('vendor.pagination.bootstrap-4')}}
                 </div>
-            </div>
+            </td>
+        </tr>
+    </table>
 
-    </ul>
-    </form>
 @endsection
 @section('footer')
     @parent
     <script>
         $('document').ready(function () {
+            //alert('ok');
             $('div.alert').fadeOut(5000);
-           $('ul').on('click','a[id="delete"]',function(ele) {
-               ele.preventDefault();
+           $('table').on('click','button.btn-danger',function(evt) {
+               evt.preventDefault();
+               var id = evt.target.id;
+               var f =$('#form'+id);
                //alert(ele.target.href);
-               var urlAlbum = $(this).attr('href');
-               var li = ele.target.parentNode.parentNode;
+               var urlAlbum = f.attr('action');
+               var tr = $('#tr'+id);
                $.ajax(
                    urlAlbum,
                    {
                        data:{
-                         '_token':$('#_token').val()
+                         '_token':'{{csrf_token()}}'
                        },
                        method: 'DELETE',
                        complete: function (resp) {
                            //alert(resp.responseText);
-                           console.log(resp);
+                           console.error(resp+'---resp');
                            if (resp.responseText == 1) {
-                               li.parentNode.removeChild(li);
+                               //tr.parentNode.removeChild(tr);
+                               tr.remove();
                                //alert(resp.responseText);
                                //$(li).remove();
                            } else {
-                               //alert('Problem contacting server');
+                               alert('Problem contacting server');
                            }
                        }
                    }
