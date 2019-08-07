@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use LaraCourse\Album;
 use LaraCourse\Http\Requests\AlbumUpdateRequest;
+use LaraCourse\Models\AlbumCategory;
 use LaraCourse\Models\Photo;
 use LaraCourse\Http\Requests\AlbumRequest;
 
@@ -34,7 +35,7 @@ class AlbumsController extends Controller
         //$queryBuilder = DB::table('albums')->orderBy('id','DESC');
 
         $queryBuilder = Album::orderBy('id','DESC')
-            ->withCount('photos');
+            ->withCount('photos')->with('categories');
         //dd(Auth::user());
         //dd($request);
         $queryBuilder->where('user_id',Auth::user()->id);
@@ -159,10 +160,21 @@ class AlbumsController extends Controller
         session()->flash('message',$messaggio);
         return redirect()->route('albums');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $album = new Album();
-        return view('albums.createalbum',['album'=>$album]);
+        $categories = AlbumCategory::get();
+        //dd($categories);
+        return view('albums.createalbum',
+            [
+                'album'=>$album,
+                'categories'=>$categories
+            ]
+        );
     }
 
     /**
@@ -197,8 +209,11 @@ class AlbumsController extends Controller
         $album->user_id = $request->user()->id;
 
         $res = $album->save();
-        if($res){
 
+        if($res){
+            if($request->has('categories')){
+                $album->categories()->attach($request->categories);
+            }
             if($this->processFile($album->id, request(), $album)){
                 $album->save();
             }
