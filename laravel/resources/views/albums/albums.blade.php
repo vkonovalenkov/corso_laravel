@@ -15,8 +15,8 @@
             <td>Album name</td>
             <td>Thumb</td>
             <td>Creator</td>
-            <td>Created Date</td>
             <td>Categories</td>
+            <td>Created Date</td>
             <td>&nbsp;</td>
         </tr>
         </thead>
@@ -34,7 +34,7 @@
                 </td>
                 <td>{{$album->user->fullname}}</td>
                 <td>
-                    @if($album->categories)
+                    @if($album->categories->count())
                     <ul>
                     @foreach($album->categories as $category)
                             <li>{{$category->category_name}} ({{$category->id}})</li>

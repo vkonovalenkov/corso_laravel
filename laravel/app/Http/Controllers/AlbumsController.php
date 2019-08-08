@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use LaraCourse\Album;
 use LaraCourse\Http\Requests\AlbumUpdateRequest;
 use LaraCourse\Models\AlbumCategory;
+use LaraCourse\Models\AlbumsCategory;
 use LaraCourse\Models\Photo;
 use LaraCourse\Http\Requests\AlbumRequest;
 
@@ -115,18 +116,16 @@ class AlbumsController extends Controller
         $album = Album::find($id);
         Auth::user()->can('update',$album);
         $this->authorize('edit',$album);
-        //dd($album->user);
-
-        /*if(\Gate::denies('manage-album',$album)){
-            abort(401,'Unauthorized');
-        }*/
-
-
-        /*if($album->user->id != Auth::user()->$id){
-            abort(401,'Unauthorized');
-        }
-        */
-        return view('albums.editalbum')->with('album',$album);
+        $categories = AlbumCategory::get();
+        $selectedCategories = $album->categories->pluck('id')->toArray();
+        //dd($selectedCategories);
+        return view('albums.editalbum')->with(
+            [
+                'album'=>$album,
+                'categories'=>$categories,
+                'selectedCategories'=>$selectedCategories
+            ]
+        );
     }
 
     public function store($id, AlbumUpdateRequest $req)
