@@ -10,6 +10,7 @@
             <input value="{{old('name',$album->album_name)}}" type="text"  required id="name" name="name" placeholder="Album name" class="form-control">
         </div>
         @include('albums.partials.fileupload')
+        @include('albums.partials.category_combo')
         <div class="form-group">
             <label for="">Description</label>
             <textarea required  id="description" name="description" placeholder="Album description" class="form-control">

@@ -12,8 +12,9 @@
         @include('albums.partials.fileupload')
         <div class="form-group">
             <label for="">Description</label>
-            <textarea required id="description" name="description" placeholder="Album description" class="form-control">{{old('description')}}</textarea>
+            <textarea  id="description" name="description" placeholder="Album description" class="form-control">{{old('description')}}</textarea>
         </div>
+        @include('albums.partials.category_combo')
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @stop
