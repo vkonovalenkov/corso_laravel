@@ -7,7 +7,7 @@
 
         <div class="form-group">
             <label for="">Name</label>
-            <input required value="{{old('name')}}" type="text" id="name" name="name" placeholder="Album name" class="form-control">
+            <input  value="{{old('name')}}" type="text" id="name" name="name" placeholder="Album name" class="form-control">
         </div>
         @include('albums.partials.fileupload')
         <div class="form-group">

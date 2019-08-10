@@ -61,7 +61,7 @@ Route::group(
 
         Route::get('/albums/{id}/edit','AlbumsController@edit')->where('id','[0-9]+')->name('album.edit');
 
-        Route::patch('/albums/{id}','AlbumsController@store');
+        Route::patch('/albums/{id}','AlbumsController@store')->name('album.patch');
 
         Route::post('/albums','AlbumsController@save')
             ->name('album.save');

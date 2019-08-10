@@ -31,7 +31,7 @@ class AlbumUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:albums,album_name',
+            'name' => 'required',
             'description' => 'required'
             //,'user_id'=> 'required'
         ];
