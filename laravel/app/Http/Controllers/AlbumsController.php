@@ -170,7 +170,7 @@ class AlbumsController extends Controller
     {
         $album = new Album();
         $categories = AlbumCategory::get();
-        
+
         //dd($categories);
         return view('albums.createalbum',
             [
