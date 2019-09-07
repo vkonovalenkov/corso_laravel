@@ -14,7 +14,9 @@ class AlbumCategoryController extends Controller
      */
     public function index()
     {
-        return AlbumCategory::with('albums')->get();
+        $categories = AlbumCategory::withCount('albums')->paginate(5);
+        //dd($categories);
+        return view('categories.index',compact('categories'));
     }
 
     /**

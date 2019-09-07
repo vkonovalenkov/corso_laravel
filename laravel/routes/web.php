@@ -99,8 +99,9 @@ Route::group(
         });
         //images
         Route::resource('photos', 'PhotosController');
-
+        Route::resource('categories','AlbumCategoryController');
     }
+
 );
 //GALLERY
 Route::group(
@@ -122,4 +123,4 @@ Auth::routes();
 
 Route::get('/','GalleryController@index');
 
-Route::resource('categories','AlbumCategoryController');
+
