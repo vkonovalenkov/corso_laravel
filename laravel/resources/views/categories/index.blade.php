@@ -10,6 +10,9 @@
 @extends('templates.default')
 
 @section('content')
+    @include('partials.inputerrors')
+ <div class="row">
+    <div class="col-8">
     <table class="table table-striped">
         <tr>
             <th>ID</th>
@@ -37,6 +40,19 @@
         <div class="row">
             <div class="col-md-8 order-first order-md-2">{{$categories->links('vendor.pagination.bootstrap-4')}}</div>
         </div>
-
-
+    </div>
+     <div class="col-4">
+         <h2>Add New Category</h2>
+         <form action="{{route('categories.store')}}" method="POST">
+             {{csrf_field()}}
+             <div class="form-group">
+                 <label for="category_name">Category name</label>
+                 <input name="category_name" id="category_name" class="form-control" required>
+             </div>
+             <div class="form-group">
+                 <button class="btn btn-primary">SAVE</button>
+             </div>
+         </form>
+     </div>
+ </div><div class="row"></div>
 @endsection

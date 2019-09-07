@@ -3,6 +3,7 @@
 namespace LaraCourse\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaraCourse\Http\Requests\AlbumCategoryRequest;
 use LaraCourse\Models\AlbumCategory;
 
 class AlbumCategoryController extends Controller
@@ -14,7 +15,7 @@ class AlbumCategoryController extends Controller
      */
     public function index()
     {
-        $categories = AlbumCategory::withCount('albums')->paginate(5);
+        $categories = AlbumCategory::withCount('albums')->latest()->paginate(5);
         //dd($categories);
         return view('categories.index',compact('categories'));
     }
@@ -35,9 +36,12 @@ class AlbumCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlbumCategoryRequest $request)
     {
-        //
+        $category = new AlbumCategory();
+        $category->category_name = $request->category_name;
+        $category->save();
+        return redirect()->route('categories.index');
     }
 
     /**
