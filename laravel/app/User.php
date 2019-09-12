@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use LaraCourse\Album;
+use LaraCourse\Models\AlbumCategory;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,10 @@ class User extends Authenticatable
     }
     public function getFullNameAttribute(){
         return $this->name;
+    }
+
+    public function albumCategories()
+    {
+        return $this->hasMany(AlbumCategory::class);
     }
 }

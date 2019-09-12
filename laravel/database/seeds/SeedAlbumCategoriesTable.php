@@ -29,7 +29,7 @@ class SeedAlbumCategoriesTable extends Seeder
         ];
         foreach ($cats as $cat){
             AlbumCategory::create(
-                ['category_name'=> $cat]
+                ['category_name'=> $cat,'user_id'=>1]
             );
         }
     }

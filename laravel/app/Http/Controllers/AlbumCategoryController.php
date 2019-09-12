@@ -3,6 +3,7 @@
 namespace LaraCourse\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use LaraCourse\Http\Requests\AlbumCategoryRequest;
 use LaraCourse\Models\AlbumCategory;
 
@@ -15,7 +16,8 @@ class AlbumCategoryController extends Controller
      */
     public function index()
     {
-        $categories = AlbumCategory::withCount('albums')->latest()->paginate(5);
+        //$categories = AlbumCategory::where('user_id',Auth::id())->withCount('albums')->latest()->paginate(5);
+        $categories = Auth::user()->albumCategories()->withCount('albums')->latest()->paginate(5);
         //dd($categories);
         return view('categories.index',compact('categories'));
     }
@@ -40,6 +42,7 @@ class AlbumCategoryController extends Controller
     {
         $category = new AlbumCategory();
         $category->category_name = $request->category_name;
+        $category->user_id = Auth::id();
         $category->save();
         return redirect()->route('categories.index');
     }
