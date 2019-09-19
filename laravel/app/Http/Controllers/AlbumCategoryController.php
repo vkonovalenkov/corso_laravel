@@ -17,7 +17,8 @@ class AlbumCategoryController extends Controller
     public function index()
     {
         //$categories = AlbumCategory::where('user_id',Auth::id())->withCount('albums')->latest()->paginate(5);
-        $categories = Auth::user()->albumCategories()->withCount('albums')->latest()->paginate(5);
+        //$categories = Auth::user()->albumCategories()->withCount('albums')->latest()->paginate(5);
+        $categories = AlbumCategory::getCategoriesByUserId(Auth::user())->paginate(5);
         //dd($categories);
         return view('categories.index',compact('categories'));
     }
@@ -29,7 +30,9 @@ class AlbumCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new AlbumCategory();
+
+        return view('categories.managecategory',compact('category'));
     }
 
     /**
@@ -66,7 +69,7 @@ class AlbumCategoryController extends Controller
      */
     public function edit(AlbumCategory $category)
     {
-        return $category;
+        return view('categories.managecategory',compact('category'));
     }
 
     /**
@@ -76,9 +79,11 @@ class AlbumCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AlbumCategory $category)
     {
-        //
+        $category->category_name = $request->category_name;
+        $category->save();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -87,8 +92,9 @@ class AlbumCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AlbumCategory $category)
     {
-        //
+        $res = $category->delete();
+        return redirect()->route('categories.index');
     }
 }

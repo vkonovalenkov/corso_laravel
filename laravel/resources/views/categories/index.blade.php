@@ -12,14 +12,15 @@
 @section('content')
     @include('partials.inputerrors')
  <div class="row">
-    <div class="col-8">
+    <div class="col-10">
     <table class="table table-striped">
         <tr>
             <th>ID</th>
             <th>Category name</th>
             <th>Created date</th>
             <th>Update date</th>
-            <td>Number of albums</td>
+            <th>Number of albums</th>
+            <th>&nbsp;</th>
         </tr>
         @forelse($categories as $category)
             <tr>
@@ -28,6 +29,14 @@
                 <td>{{$category->created_at}}</td>
                 <td>{{$category->updated_at}}</td>
                 <td>{{$category->albums_count}}</td>
+                <td>
+                    <form method="post" action="{{route('categories.destroy',$category->id)}}">
+                        {{method_field('DELETE')}}
+                        {{csrf_field()}}
+                        <button class="btn btn-danger">DELETE</button>
+                    </form>
+                    <a href="{{route('categories.edit',$category->id)}}" class="btn btn-primary">UPDATE</a>
+                </td>
             </tr>
             @empty
             <tfoot>
@@ -41,18 +50,9 @@
             <div class="col-md-8 order-first order-md-2">{{$categories->links('vendor.pagination.bootstrap-4')}}</div>
         </div>
     </div>
-     <div class="col-4">
+     <div class="col-2">
          <h2>Add New Category</h2>
-         <form action="{{route('categories.store')}}" method="POST">
-             {{csrf_field()}}
-             <div class="form-group">
-                 <label for="category_name">Category name</label>
-                 <input name="category_name" id="category_name" class="form-control" required>
-             </div>
-             <div class="form-group">
-                 <button class="btn btn-primary">SAVE</button>
-             </div>
-         </form>
+         @include('categories.categoryform')
      </div>
  </div><div class="row"></div>
 @endsection

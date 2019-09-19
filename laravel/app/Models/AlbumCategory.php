@@ -3,6 +3,7 @@
 namespace LaraCourse\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use LaraCourse\Album;
 use LaraCourse\User;
 
@@ -17,5 +18,14 @@ class AlbumCategory extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param $queryBuilder
+     */
+    public function scopeGetCategoriesByUserId(Builder $queryBuilder,User $user)
+    {
+        $queryBuilder->where('user_id', $user->id)->withCount('albums')->latest();
+        return $queryBuilder;
     }
 }
