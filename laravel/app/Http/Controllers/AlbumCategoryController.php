@@ -20,7 +20,8 @@ class AlbumCategoryController extends Controller
         //$categories = Auth::user()->albumCategories()->withCount('albums')->latest()->paginate(5);
         $categories = AlbumCategory::getCategoriesByUserId(Auth::user())->paginate(5);
         //dd($categories);
-        return view('categories.index',compact('categories'));
+        $category = new AlbumCategory();
+        return view('categories.index',compact('categories','category'));
     }
 
     /**
@@ -31,7 +32,7 @@ class AlbumCategoryController extends Controller
     public function create()
     {
         $category = new AlbumCategory();
-
+        //dd($category);
         return view('categories.managecategory',compact('category'));
     }
 

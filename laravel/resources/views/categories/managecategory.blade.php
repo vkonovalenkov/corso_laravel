@@ -9,7 +9,7 @@
 @extends('templates.default')
 @section('content')
 <div class="row">
-    <div class="col-6 p-md-5">
+    <div class="col-md-8">
         <h2>Manage categories</h2>
         @include('categories.categoryform')
     </div>

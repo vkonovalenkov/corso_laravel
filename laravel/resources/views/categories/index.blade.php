@@ -12,7 +12,7 @@
 @section('content')
     @include('partials.inputerrors')
  <div class="row">
-    <div class="col-10">
+    <div class="col-8">
     <table class="table table-striped">
         <tr>
             <th>ID</th>
@@ -22,20 +22,19 @@
             <th>Number of albums</th>
             <th>&nbsp;</th>
         </tr>
-        @forelse($categories as $category)
+        @forelse($categories as $categoryI)
             <tr>
-                <td>{{$category->id}}</td>
-                <td>{{$category->category_name}}</td>
-                <td>{{$category->created_at}}</td>
-                <td>{{$category->updated_at}}</td>
-                <td>{{$category->albums_count}}</td>
+                <td>{{$categoryI->id}}</td>
+                <td>{{$categoryI->category_name}}</td>
+                <td>{{$categoryI->created_at}}</td>
+                <td>{{$categoryI->albums_count}}</td>
                 <td>
-                    <form method="post" action="{{route('categories.destroy',$category->id)}}">
+                    <form class="form-inline" method="post" action="{{route('categories.destroy',$categoryI->id)}}">
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
-                        <button class="btn btn-danger">DELETE</button>
+                        <button class="btn btn-danger" title="DELETE"><span class="fa fa-minus"></span></button>&nbsp;
+                        <a href="{{route('categories.edit',$categoryI->id)}}" class="btn btn-primary" title="UPDATE"><span class="fa fa-pen"></span></a>
                     </form>
-                    <a href="{{route('categories.edit',$category->id)}}" class="btn btn-primary">UPDATE</a>
                 </td>
             </tr>
             @empty
@@ -49,10 +48,10 @@
         <div class="row">
             <div class="col-md-8 order-first order-md-2">{{$categories->links('vendor.pagination.bootstrap-4')}}</div>
         </div>
-    </div>
-     <div class="col-2">
+     </div>
+     <div class="col-4">
          <h2>Add New Category</h2>
          @include('categories.categoryform')
      </div>
- </div><div class="row"></div>
+ </div>
 @endsection
