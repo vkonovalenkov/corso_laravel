@@ -23,7 +23,7 @@
             <th>&nbsp;</th>
         </tr>
         @forelse($categories as $categoryI)
-            <tr>
+            <tr id="tr-{{$categoryI->id}}">
                 <td>{{$categoryI->id}}</td>
                 <td>{{$categoryI->category_name}}</td>
                 <td>{{$categoryI->created_at}}</td>
@@ -32,7 +32,7 @@
                     <form class="form-inline" method="post" action="{{route('categories.destroy',$categoryI->id)}}">
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
-                        <button class="btn btn-danger" title="DELETE"><span class="fa fa-minus"></span></button>&nbsp;
+                        <button id="btnDelete-{{$categoryI->id}}" class="btn btn-danger" title="DELETE"><span class="fa fa-minus"></span></button>&nbsp;
                         <a href="{{route('categories.edit',$categoryI->id)}}" class="btn btn-primary" title="UPDATE"><span class="fa fa-pen"></span></a>
                     </form>
                 </td>
@@ -55,3 +55,40 @@
      </div>
  </div>
 @endsection
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            $('form .btn-danger').on('click',function (evt) {
+                evt.preventDefault();
+                var f = this.parentNode;
+                var categoryid =  this.id.replace('btnDelete-','')*1;
+
+                var Trid = 'tr-'+categoryid;
+                var urlCategory = f.action;
+                console.log(urlCategory);
+                //return false;
+                //alert(urlCategory);
+                $.ajax(
+                    urlCategory,
+                    {
+                        data:{
+                            '_token':Laravel.csrfToken
+                        },
+                        //method:"DELETE",
+                        type: "DELETE",
+                        complete: function (resp) {
+                            console.log(resp.responseText);
+                            if (resp.responseText == 1) {
+
+                            } else {
+                                alert('Problem contacting server');
+                            }
+                        }
+                    }
+                )
+                return false;
+            });
+        });
+    </script>
+    @endsection
