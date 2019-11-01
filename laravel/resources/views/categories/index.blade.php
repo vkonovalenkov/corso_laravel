@@ -78,12 +78,19 @@
                         //method:"DELETE",
                         type: "DELETE",
                         complete: function (resp) {
-                            console.log(resp.responseText);
-                            if (resp.responseText == 1) {
+
+                            var resp = JSON.parse(resp.responseText);
+                            /*
+                            //if (resp.responseText == 1) {
+                            if (resp.success) {
 
                             } else {
                                 alert('Problem contacting server');
                             }
+                            */
+                            alert(resp.message);
+                            //$('#'+Trid).remove();
+                            $('#'+Trid).fadeOut(2000);
                         }
                     }
                 )
