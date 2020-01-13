@@ -13,12 +13,14 @@ class CreateModelsAlbumCategoriesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('album_categories');
         Schema::create('album_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category_name',64)->unique();
             $table->softDeletes();
             $table->timestamps();
         });
+        Schema::dropIfExists('album_category');
         Schema::create('album_category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('album_id')->unsigned();
@@ -35,6 +37,9 @@ class CreateModelsAlbumCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models_album_categories');
+        //Schema::dropIfExists('models_album_categories');
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Schema::dropIfExists('album_category');
+        Schema::dropIfExists('album_categories');
     }
 }

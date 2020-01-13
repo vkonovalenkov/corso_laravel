@@ -144,11 +144,14 @@ class AlbumsController extends Controller
         /*if(\Gate::denies('manage-album',$album)){
             abort(401,'Unauthorized');
         }*/
+
         $album->album_name = request()->input('name');
         $album->description = request()->input('description');
         $album->user_id = $req->user()->id;
         $this->processFile($id, $req, $album);
+
         $res = $album->save();
+        $album->categories()->sync($req->categories);
         /*$data = request()->only(['name','description']);
         $data['id'] = $id;
         $sql  = 'UPDATE albums SET album_name=:name, description=:description';
@@ -167,11 +170,13 @@ class AlbumsController extends Controller
     {
         $album = new Album();
         $categories = AlbumCategory::get();
+
         //dd($categories);
         return view('albums.createalbum',
             [
                 'album'=>$album,
-                'categories'=>$categories
+                'categories'=>$categories,
+                'selectedCategories'=>[]
             ]
         );
     }
@@ -203,6 +208,7 @@ class AlbumsController extends Controller
         );
         */
         $album = new Album();
+
         $album->album_name = $request->input('name');
         $album->description = $request->input('description');
         $album->user_id = $request->user()->id;

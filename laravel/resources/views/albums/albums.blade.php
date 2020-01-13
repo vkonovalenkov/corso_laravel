@@ -12,12 +12,12 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <td>Album name</td>
-            <td>Thumb</td>
-            <td>Creator</td>
-            <td>Categories</td>
-            <td>Created Date</td>
-            <td>&nbsp;</td>
+            <th>Album name</th>
+            <th>Thumb</th>
+            <th>Creator</th>
+            <th>Categories</th>
+            <th>Created Date</th>
+            <th>&nbsp;</th>
         </tr>
         </thead>
 
