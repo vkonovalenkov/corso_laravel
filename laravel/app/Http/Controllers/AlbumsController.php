@@ -267,3 +267,5 @@ class AlbumsController extends Controller
 
 
 }
+
+
