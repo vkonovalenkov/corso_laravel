@@ -96,6 +96,30 @@
                 )
                 return false;
             });
+            //Add Category
+            $('#manageCategoryForm .btn-primary').on('click',function (evt) {
+                evt.preventDefault();
+                var f = $('#manageCategoryForm');
+                var data = f.serialize();
+                var urlCategory = f.attr('action');
+                //return false;
+                $.ajax(
+                    urlCategory,
+                    {
+                        data:data,
+                        //method:'POST',
+                        type:'POST',
+                        complete: function (resp) {
+
+                            var resp = JSON.parse(resp.responseText);
+                            alert(resp.message);
+                            //$('#'+Trid).remove();
+                            $('#'+Trid).fadeOut(2000);
+                        }
+                    }
+                )
+                return false;
+            });
         });
     </script>
     @endsection

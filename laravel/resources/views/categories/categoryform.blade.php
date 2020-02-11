@@ -8,7 +8,7 @@
 ?>
 <div class="row">
     <div class="col-md-11 mt-2">
-<form class="form-inline" action="{{!$category->category_name ? route('categories.store'): route('categories.update',$category->id)}}" method="POST">
+<form id="manageCategoryForm" class="form-inline" action="{{!$category->category_name ? route('categories.store'): route('categories.update',$category->id)}}" method="POST">
     {{csrf_field()}}
     {{$category->category_name ? method_field('PATCH') : ''}}
     <div class="form-group">
