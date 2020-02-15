@@ -13,7 +13,7 @@
     @include('partials.inputerrors')
  <div class="row">
     <div class="col-8">
-    <table class="table table-striped">
+    <table class="table table-striped" id="categoryList">
         <tr>
             <th>ID</th>
             <th>Category name</th>
@@ -25,7 +25,7 @@
         @forelse($categories as $categoryI)
             <tr id="tr-{{$categoryI->id}}">
                 <td>{{$categoryI->id}}</td>
-                <td>{{$categoryI->category_name}}</td>
+                <td id="catid-{{$categoryI->id}}">{{$categoryI->category_name}}</td>
                 <td>{{$categoryI->created_at}}</td>
                 <td>{{$categoryI->albums_count}}</td>
                 <td>
@@ -33,7 +33,7 @@
                         {{method_field('DELETE')}}
                         {{csrf_field()}}
                         <button id="btnDelete-{{$categoryI->id}}" class="btn btn-danger" title="DELETE"><span class="fa fa-minus"></span></button>&nbsp;
-                        <a href="{{route('categories.edit',$categoryI->id)}}" class="btn btn-primary" title="UPDATE"><span class="fa fa-pen"></span></a>
+                        <a id="upd-{{$categoryI->id}}" href="{{route('categories.edit',$categoryI->id)}}" class="btn btn-primary" title="UPDATE"><span class="fa fa-pen"></span></a>
                     </form>
                 </td>
             </tr>
@@ -119,6 +119,15 @@
                     }
                 )
                 return false;
+            });
+            //Update Category
+            $('#categoryList a.btn-primary').on('click',function (evt) {
+                evt.preventDefault();
+                var categoryId = this.id.replace('upd-','');
+                var categoryName = $('#catid-'+categoryId).text();
+                var f = $('#manageCategoryForm');
+                f[0].category_name.value = categoryName;
+                console.log(f);
             });
         });
     </script>
