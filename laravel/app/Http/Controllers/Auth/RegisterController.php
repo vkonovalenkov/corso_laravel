@@ -2,7 +2,7 @@
 
 namespace LaraCourse\Http\Controllers\Auth;
 
-use LaraCourse\User;
+use LaraCourse\Models\User;
 use LaraCourse\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \LaraCourse\User
+     * @return \LaraCourse\Models\User
      */
     protected function create(array $data)
     {
