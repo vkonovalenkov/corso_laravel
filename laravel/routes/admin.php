@@ -1,6 +1,9 @@
 <?php
-Route::get('/', function () {
 
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function () {
+dd(Auth::user()->isAdmin());
     return 'Hello admin';
 
 });

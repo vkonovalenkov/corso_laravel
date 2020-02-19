@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 // protected $table = 'galery_users';
     /**
@@ -52,5 +52,8 @@ class User extends Authenticatable
     public function albumCategories()
     {
         return $this->hasMany(AlbumCategory::class);
+    }
+    public function isAdmin(){
+        return $this->role === 'admin';
     }
 }
