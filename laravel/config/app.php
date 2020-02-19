@@ -174,6 +174,7 @@ return [
         // LaraCourse\Providers\BroadcastServiceProvider::class,
         LaraCourse\Providers\EventServiceProvider::class,
         LaraCourse\Providers\RouteServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
