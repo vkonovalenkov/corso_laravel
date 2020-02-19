@@ -19,7 +19,7 @@ use LaraCourse\Album;
 use LaraCourse\Http\Controllers\AlbumsController;
 use LaraCourse\Http\Controllers\PhotosController;
 use LaraCourse\Models\Photo;
-use LaraCourse\User;
+use LaraCourse\Models\User;
 
 //Route::get('/','HomeController@index');
 

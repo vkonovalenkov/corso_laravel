@@ -1,6 +1,6 @@
 <?php
 
-use LaraCourse\User;
+use LaraCourse\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;

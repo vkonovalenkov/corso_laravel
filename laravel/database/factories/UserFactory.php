@@ -1,7 +1,7 @@
 <?php
 
 use LaraCourse\Models\Photo;
-use LaraCourse\User;
+use LaraCourse\Models\User;
 use LaraCourse\Album;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -30,7 +30,7 @@ $cats = [
     'technics',
     'transport'
 ];
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(LaraCourse\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use LaraCourse\Album;
 use LaraCourse\Models\AlbumCategory;
 use LaraCourse\Models\Photo;
-use LaraCourse\User;
+use LaraCourse\Models\User;
 
 class DatabaseSeeder extends Seeder
 {

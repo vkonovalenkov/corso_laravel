@@ -5,7 +5,7 @@ namespace LaraCourse\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use LaraCourse\Album;
-use LaraCourse\User;
+use LaraCourse\Models\User;
 
 class AlbumCategory extends Model
 {
