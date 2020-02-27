@@ -1,7 +1,7 @@
 @extends('templates.admin')
 @section('content')
     <h1>User</h1>
-    <table class="table-striped">
+    <table class="table-striped" id="dataTable">
         <thead>
         <tr>
             <th>NAME</th>
@@ -23,7 +23,9 @@
                 <td>
                     <div class="row">
                         <div class="col-4">
-                            <button class="btn btn-primary">UPDATE</button>
+                            <button class="btn btn-primary" title="UPDATE">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </button>
                         </div>
                         <div class="col-4">
                             <button @if($user->deleted_at)
@@ -31,10 +33,14 @@
                                     @else
 
                                     @endif
-                                    class="btn btn-danger">DELETE</button>
+                                    class="btn btn-danger" title="SOFT DELETE">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-danger">FORCE DELETE</button>
+                            <button class="btn btn-danger" title="FORCE DELETE">
+                                <i class="fa fa-minus-square-o"></i>
+                            </button>
                         </div>
                     </div>
                 </td>

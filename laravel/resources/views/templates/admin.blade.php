@@ -15,6 +15,7 @@
     <!-- Custom styles for this template-->
     <link href="{{url('/')}}/css/sb-admin.css" rel="stylesheet">
     <link href="{{url('/')}}/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -147,7 +148,7 @@
     <script src="{{url('/')}}/jquery/jquery.min.js"></script>
     <script src="{{url('/')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
-    <script src="{{url('/')}}/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{url('/')}}/jquery-easing/jquery.easing.js"></script>
         <script src="{{url('/')}}/datatables/jquery.dataTables.js"></script>
         <script src="{{url('/')}}/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
