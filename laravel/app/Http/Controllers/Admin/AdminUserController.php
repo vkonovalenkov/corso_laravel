@@ -20,18 +20,22 @@ class AdminUserController extends Controller
         //return view('admin/users',compact('users'));
         return view('admin/users');
     }
+    private function getUsersButtons($id){
+        $buttonEdit = '<a href="'.route('users.edit',['id'=>$id]).'" id="edit-'.$id.'" class="btn btn-sm btn-primary">
+                <i class="fa fa-pencil-square-o"></i></a>&nbsp;';
+        $buttonDelete = '<a href="'.route('users.destroy',['id'=>$id]).'" id="delete-'.$id.'" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash-o"></i></a>&nbsp;';
+        $buttonForceDelete = '<a href="'.route('users.destroy',['id'=>$id]).'?hard=1" id="forcedelete-'.$id.'" class="btn btn-sm btn-danger">
+                <i class="fa fa-minus-square-o"></i></a>';
+        return $buttonEdit.$buttonDelete.$buttonForceDelete;
+    }
+
     public function getUsers(){
 
-        $users = User::select(['name','email','role','created_at','deleted_at'])->orderBy('name')->get();
+        $users = User::select(['id','name','email','role','created_at','deleted_at'])->orderBy('name')->get();
         $result = DataTables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-primary">
-                <i class="fa fa-pencil-square-o"></i></a>&nbsp;'.
-                    '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-danger">
-                <i class="fa fa-trash-o"></i></a>&nbsp;'.
-                    '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-danger">
-                <i class="fa fa-minus-square-o"></i></a>'
-                    ;
+                return $this->getUsersButtons($user->id);
             })
             ->make(true);
         return $result;
@@ -76,7 +80,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "form";
     }
 
     /**
