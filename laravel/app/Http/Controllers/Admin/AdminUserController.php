@@ -5,6 +5,7 @@ namespace LaraCourse\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use LaraCourse\Http\Controllers\Controller;
 use LaraCourse\Models\User;
+use DataTables;
 
 class AdminUserController extends Controller
 {
@@ -15,10 +16,26 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name')->get();
-        return view('admin/users',compact('users'));
+        //$users = User::orderBy('name')->get();
+        //return view('admin/users',compact('users'));
+        return view('admin/users');
     }
+    public function getUsers(){
 
+        $users = User::select(['name','email','role','created_at','deleted_at'])->orderBy('name')->get();
+        $result = DataTables::of($users)
+            ->addColumn('action', function ($user) {
+                return '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-primary">
+                <i class="fa fa-pencil-square-o"></i></a>&nbsp;'.
+                    '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash-o"></i></a>&nbsp;'.
+                    '<a href="#edit-'.$user->id.'" class="btn btn-sm btn-danger">
+                <i class="fa fa-minus-square-o"></i></a>'
+                    ;
+            })
+            ->make(true);
+        return $result;
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -55,7 +55,7 @@
                     <span class="nav-link-text">Albums Categories</span>
                 </a>
             </li>
-   
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <a class="nav-link" href="#">
                     <i class="fa fa-fw fa-book"></i>
@@ -149,11 +149,11 @@
     <script src="{{url('/')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="{{url('/')}}/jquery-easing/jquery.easing.js"></script>
-        <script src="{{url('/')}}/datatables/jquery.dataTables.js"></script>
-        <script src="{{url('/')}}/datatables/dataTables.bootstrap4.js"></script>
+    <script src="{{url('/')}}/datatables/jquery.dataTables.js"></script>
+    <script src="{{url('/')}}/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{url('/')}}/js/sb-admin.min.js"></script>
-        <script src="{{url('/')}}/js/sb-admin-datatables.min.js"></script>
+    <script src="{{url('/')}}/js/sb-admin-datatables.min.js"></script>
         @show
 </div>
 </body>
