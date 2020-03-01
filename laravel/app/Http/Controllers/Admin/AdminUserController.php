@@ -32,7 +32,7 @@ class AdminUserController extends Controller
 
     public function getUsers(){
 
-        $users = User::select(['id','name','email','role','created_at','deleted_at'])->orderBy('name')->get();
+        $users = User::select(['id','name','email','role','created_at','deleted_at'])->orderBy('name')->withTrashed()->get();
         $result = DataTables::of($users)
             ->addColumn('action', function ($user) {
                 return $this->getUsersButtons($user->id);
@@ -101,8 +101,9 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+       $res = $user->delete();
+       return ''.$res;
     }
 }
