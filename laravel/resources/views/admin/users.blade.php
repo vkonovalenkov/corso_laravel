@@ -4,6 +4,7 @@
     <table class="table-striped" id="users-table" width="100%">
         <thead>
         <tr>
+            <th>ID</th>
             <th>NAME</th>
             <th>EMAIL</th>
             <th>ROLE</th>
@@ -22,11 +23,12 @@
     <script>
     $(
         function () {
-            $('#users-table').DataTable({
+        var dataTable =   $('#users-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{{route('admin.getUsers')}}',
                 columns: [
+                    {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
                     {data: 'role', name: 'role'},
@@ -36,8 +38,11 @@
                 ]
             });
 
-            $('#users-table').on('click','.btn-danger',function(ele) {
+            $('#users-table').on('click','.ajax',function(ele) {
                 ele.preventDefault();
+                if(!confirm('Do you really want to delete this record ?')){
+                    return false;
+                }
                 var urlUsers = $(this).attr('href');
                 //alert(urlUsers);
                 var tr = this.parentNode.parentNode;
@@ -49,12 +54,17 @@
                             //'_token':'{{csrf_token()}}'
                             '_token' :  Laravel.csrfToken
                         },
-                        method: 'DELETE',
+                        method: this.id.startsWith('delete') ? 'DELETE' : 'PATCH',
                         complete: function (resp) {
                             //alert(resp.responseText);
-                            console.error(resp+'---resp');
+                            console.log(resp+'---resp');
                             if (resp.responseText == 1) {
-                                tr.parentNode.removeChild(tr);
+                                if(urlUsers.endsWith('hard=1')){
+                                    tr.parentNode.removeChild(tr);
+                                }
+                                dataTable.ajax.reload();
+                                alert('User deleted correctly');
+
                                 //tr.remove();
                                 //alert(resp.responseText);
                                 //$(li).remove();

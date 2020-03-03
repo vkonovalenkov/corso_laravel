@@ -20,12 +20,26 @@ class AdminUserController extends Controller
         //return view('admin/users',compact('users'));
         return view('admin/users');
     }
-    private function getUsersButtons($id){
+    private function getUsersButtons(User $user){
+        $id = $user->id;
+
         $buttonEdit = '<a href="'.route('users.edit',['id'=>$id]).'" id="edit-'.$id.'" class="btn btn-sm btn-primary">
                 <i class="fa fa-pencil-square-o"></i></a>&nbsp;';
-        $buttonDelete = '<a href="'.route('users.destroy',['id'=>$id]).'" id="delete-'.$id.'" class="btn btn-sm btn-danger">
-                <i class="fa fa-trash-o"></i></a>&nbsp;';
-        $buttonForceDelete = '<a href="'.route('users.destroy',['id'=>$id]).'?hard=1" id="forcedelete-'.$id.'" class="btn btn-sm btn-danger">
+        if($user->deleted_at){
+            $deleteRoute = route('users.restore',['id'=>$id]);
+            $iconDelete = '<i class="fa fa-repeat"></i>';
+            $btnId = 'restore-'.$id;
+            $btnClass = 'btn-default';
+        }else{
+            $deleteRoute = route('users.destroy',['id'=>$id]);
+            $iconDelete = '<i class="fa fa-trash-o"></i>';
+            $btnId = 'delete-'.$id;
+            $btnClass = 'btn-danger';
+        }
+
+        $buttonDelete = '<a href="'.$deleteRoute.'" id="'.$btnId.'" class="ajax btn btn-sm '.$btnClass.'">
+             '.$iconDelete.'</a>&nbsp;';
+        $buttonForceDelete = '<a href="'.route('users.destroy',['id'=>$id]).'?hard=1" id="forcedelete-'.$id.'" class="ajax btn btn-sm btn-danger">
                 <i class="fa fa-minus-square-o"></i></a>';
         return $buttonEdit.$buttonDelete.$buttonForceDelete;
     }
@@ -35,7 +49,7 @@ class AdminUserController extends Controller
         $users = User::select(['id','name','email','role','created_at','deleted_at'])->orderBy('name')->withTrashed()->get();
         $result = DataTables::of($users)
             ->addColumn('action', function ($user) {
-                return $this->getUsersButtons($user->id);
+                return $this->getUsersButtons($user);
             })
             ->make(true);
         return $result;
@@ -101,9 +115,18 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-       $res = $user->delete();
+       $user = User::withTrashed()->findOrFail($id);
+       $hard = \request('hard','');
+       $res = $hard ? $user->forceDelete() : $user->delete();
+       return ''.$res;
+    }
+    public function restore($id)
+    {
+       $user = User::withTrashed()->findOrFail($id);
+       //$hard = \request('hard','');
+       $res = $user->restore();
        return ''.$res;
     }
 }

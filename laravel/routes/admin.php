@@ -19,6 +19,8 @@ Route::resource('users','Admin\AdminUserController',
 );
 Route::get('getUsers','Admin\AdminUserController@getUsers')
 ->name('admin.getUsers');
+Route::patch('restore/{id}','Admin\AdminUserController@restore')
+    ->name('users.restore');
 Route::view('/','templates/admin')->name('admin');
 Route::get('/dashboard', function () {
 
