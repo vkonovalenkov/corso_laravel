@@ -20,8 +20,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
+    protected $dates = [
+      'created_at',
+      'updated_at',
+      'deleted_at'
+    ];
+    protected $dateFormat = 'Y-m-d H:i:s';
 // protected $table = 'galery_users';
     /**
      * The attributes that should be hidden for arrays.
@@ -52,5 +58,8 @@ class User extends Authenticatable
     public function albumCategories()
     {
         return $this->hasMany(AlbumCategory::class);
+    }
+    public function isAdmin(){
+        return $this->role === 'admin';
     }
 }
