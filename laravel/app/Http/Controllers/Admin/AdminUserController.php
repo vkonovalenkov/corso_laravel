@@ -69,7 +69,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();
+        return view('admin.edituser',compact('user'));
     }
 
     /**
@@ -78,9 +79,15 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //return $request->all();
+        $user = new User();
+        $user->password = bcrypt($request->input('email'));
+        $user->fill($request->only(['email','name','role']));
+        $res = $user->save();
+        $messaggio = $res ? 'User successfuly created' : 'Problem create users';
+        session()->flash('message',$messaggio);
+        return redirect()->route('users.edit',['id'=>$user->id]);
     }
 
     /**
@@ -112,9 +119,13 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserFormRequest $request, $id)
+    public function update(UserFormRequest $request, User $user)
     {
-        return $request->all();
+        $user->fill($request->only(['email','name','role']));
+        $res = $user->save();
+        $messaggio = $res ? 'User successfuly updated' : 'Problem saving users';
+        session()->flash('message',$messaggio);
+        return redirect()->route('users.edit',['id'=>$user->id]);
     }
 
     /**

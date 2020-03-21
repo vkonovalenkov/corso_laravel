@@ -25,7 +25,7 @@ class UserFormRequest extends FormRequest
      */
     public function rules()
     {
-
+        //dd($this->id);
         return    [
             'name' => 'required|max:255',
             'email' => [
