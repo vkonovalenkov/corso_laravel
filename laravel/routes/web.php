@@ -14,10 +14,13 @@
 use Doctrine\DBAL\Driver\IBMDB2\DB2Connection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use LaraCourse\Album;
 use LaraCourse\Http\Controllers\AlbumsController;
 use LaraCourse\Http\Controllers\PhotosController;
+use LaraCourse\Mail\TestEmail;
+use LaraCourse\Mail\TestMd;
 use LaraCourse\Models\Photo;
 use LaraCourse\Models\User;
 
@@ -122,5 +125,13 @@ Route::group(
 Auth::routes();
 
 Route::get('/','GalleryController@index');
+
+Route::get('testMail',function (){
+    $user = User::get()->first();
+    //\Mail::send(new TestEmail(Auth::user()));
+    //\Mail::to('v.konovalenkov@gmail.com')->send(new TestEmail($user));
+    \Mail::to('v.konovalenkov@gmail.com')->send(new TestMd($user));
+});
+//Route::view('testMail','mails.testemail',['username'=>'Vladimiro']);
 
 
