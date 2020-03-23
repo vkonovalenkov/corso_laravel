@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use LaraCourse\Album;
+use LaraCourse\Events\NewAlbumCreated;
 use LaraCourse\Http\Requests\AlbumUpdateRequest;
 use LaraCourse\Models\AlbumCategory;
 use LaraCourse\Models\AlbumsCategory;
@@ -216,6 +217,7 @@ class AlbumsController extends Controller
         $res = $album->save();
 
         if($res){
+            event(new NewAlbumCreated($album));
             if($request->has('categories')){
                 $album->categories()->attach($request->categories);
             }

@@ -15,9 +15,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
+        'LaraCourse\Events\NewAlbumCreated' =>[
+            'LaraCourse\Listeners\NotifyAdminNewAlbum',
+        ]
+        /*Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
+        ],*/
     ];
 
     /**

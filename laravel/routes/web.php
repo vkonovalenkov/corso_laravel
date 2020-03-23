@@ -133,5 +133,9 @@ Route::get('testMail',function (){
     \Mail::to('v.konovalenkov@gmail.com')->send(new TestMd($user));
 });
 //Route::view('testMail','mails.testemail',['username'=>'Vladimiro']);
+Route::get('testEvent',function (){
+    $album = Album::first();
+    event(new \LaraCourse\Events\NewAlbumCreated($album));
+});
 
 
