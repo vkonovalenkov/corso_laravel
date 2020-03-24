@@ -21,7 +21,8 @@ class PhotosController extends Controller
     protected $rules = [
         'album_id' => 'required|integer|exists:albums,id',
         'name' => 'required|unique:photos,name',
-        'description' => 'required',
+       // 'description' => 'required',
+        'description' => 'nullable|min:3',
         'image_path' => 'required|image'
     ];
     protected $errorMessages = [
@@ -67,7 +68,13 @@ class PhotosController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $this->validate($request,$this->rules,$this->errorMessages);
+        //Metodo alternativo per validare i dati del form
+        //$this->validate($request,$this->rules,$this->errorMessages);
+        $request->validate($this->rules,$this->errorMessages);
+        //$picData = $request->validate($this->rules,$this->errorMessages);
+        //dd($picData);
+        //Photo::create($picData);
+
 
         $photo = new Photo();
         //dd($photo);

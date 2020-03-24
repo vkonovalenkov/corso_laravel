@@ -18,7 +18,7 @@ class NotifyAdminAlbum extends Mailable
      *
      * @return void
      */
-    public function __construct(Album $album)
+    public function j__construct(Album $album)
     {
         $this->album = $album;
         $this->album_name = $album->album_name;

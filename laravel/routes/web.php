@@ -24,6 +24,14 @@ use LaraCourse\Mail\TestMd;
 use LaraCourse\Models\Photo;
 use LaraCourse\Models\User;
 
+Route::get('allalbums',function (){
+    $albums = Album::get();
+    $albums->dump();
+    $albums->pluck('album_name')->dd();
+    //$album = Album::get()->pluck('album_name')->dump();
+    //return Album::get();
+});
+
 //Route::get('/','HomeController@index');
 
 Route::get('welcome/{name?}/{lastname?}/{age?}', 'WelcomeController@welcome')
@@ -125,6 +133,9 @@ Route::group(
 Auth::routes();
 
 Route::get('/','GalleryController@index');
+//Lezione 188
+//Route::get('home','GalleryController@index');
+Route::redirect('home','/');
 
 Route::get('testMail',function (){
     $user = User::get()->first();

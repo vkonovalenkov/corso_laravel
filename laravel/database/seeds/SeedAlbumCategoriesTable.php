@@ -28,9 +28,14 @@ class SeedAlbumCategoriesTable extends Seeder
             'transport'
         ];
         foreach ($cats as $cat){
-            AlbumCategory::create(
+            //Commento lezione 187 e uso factory
+            /*AlbumCategory::create(
                 ['category_name'=> $cat,'user_id'=>1]
-            );
+            );*/
+            factory(AlbumCategory::class)->create([
+                'category_name' => $cat,
+                'user_id'=>1
+            ]);
         }
     }
 }
