@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use LaraCourse\Models\AlbumCategory;
-use LaraCourse\Models\AlbumsCategory;
+//use LaraCourse\Models\AlbumsCategory;
 
 class SeedAlbumCategoriesTable extends Seeder
 {
