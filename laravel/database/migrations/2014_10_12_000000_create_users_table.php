@@ -1,4 +1,4 @@
-<?php
+email_verified_at<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

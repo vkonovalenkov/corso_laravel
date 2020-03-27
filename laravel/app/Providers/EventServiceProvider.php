@@ -17,10 +17,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'LaraCourse\Events\NewAlbumCreated' =>[
             'LaraCourse\Listeners\NotifyAdminNewAlbum',
-        ]
+        ],
         /*Registered::class => [
             SendEmailVerificationNotification::class,
         ],*/
+        'Illuminate\Auth\Events\Verified' => [
+            'App\Listeners\LogVerifiedUser',
+        ],
     ];
 
     /**

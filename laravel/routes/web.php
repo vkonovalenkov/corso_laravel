@@ -50,7 +50,8 @@ Route::get('welcome/{name?}/{lastname?}/{age?}', 'WelcomeController@welcome')
 //ALBUMS
 Route::group(
     [
-        'middleware'=>'auth',
+        //'middleware'=>'auth',
+        'middleware'=>['auth','verified'],
         'prefix'=>'dashboard'
     ],
     function (){
@@ -129,8 +130,9 @@ Route::group(
     }
 );
 
-
-Auth::routes();
+//Lezione 193
+//Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/','GalleryController@index');
 //Lezione 188
