@@ -25,15 +25,15 @@ class AdminUserController extends Controller
     private function getUsersButtons(User $user){
         $id = $user->id;
 
-        $buttonEdit = '<a href="'.route('users.edit',['id'=>$id]).'" id="edit-'.$id.'" class="btn btn-sm btn-primary">
+        $buttonEdit = '<a href="'.route('users.edit',['user'=>$id]).'" id="edit-'.$id.'" class="btn btn-sm btn-primary">
                 <i class="fa fa-pencil-square-o"></i></a>&nbsp;';
         if($user->deleted_at){
-            $deleteRoute = route('users.restore',['id'=>$id]);
+            $deleteRoute = route('users.restore',['user'=>$id]);
             $iconDelete = '<i class="fa fa-repeat"></i>';
             $btnId = 'restore-'.$id;
             $btnClass = 'btn-default';
         }else{
-            $deleteRoute = route('users.destroy',['id'=>$id]);
+            $deleteRoute = route('users.destroy',['user'=>$id]);
             $iconDelete = '<i class="fa fa-trash-o"></i>';
             $btnId = 'delete-'.$id;
             $btnClass = 'btn-danger';
@@ -41,7 +41,7 @@ class AdminUserController extends Controller
 
         $buttonDelete = '<a href="'.$deleteRoute.'" id="'.$btnId.'" class="ajax btn btn-sm '.$btnClass.'">
              '.$iconDelete.'</a>&nbsp;';
-        $buttonForceDelete = '<a href="'.route('users.destroy',['id'=>$id]).'?hard=1" id="forcedelete-'.$id.'" class="ajax btn btn-sm btn-danger">
+        $buttonForceDelete = '<a href="'.route('users.destroy',['user'=>$id]).'?hard=1" id="forcedelete-'.$id.'" class="ajax btn btn-sm btn-danger">
                 <i class="fa fa-minus-square-o"></i></a>';
         return $buttonEdit.$buttonDelete.$buttonForceDelete;
     }
@@ -87,7 +87,7 @@ class AdminUserController extends Controller
         $res = $user->save();
         $messaggio = $res ? 'User successfuly created' : 'Problem create users';
         session()->flash('message',$messaggio);
-        return redirect()->route('users.edit',['id'=>$user->id]);
+        return redirect()->route('users.edit',['user'=>$user->id]);
     }
 
     /**
@@ -125,7 +125,7 @@ class AdminUserController extends Controller
         $res = $user->save();
         $messaggio = $res ? 'User successfuly updated' : 'Problem saving users';
         session()->flash('message',$messaggio);
-        return redirect()->route('users.edit',['id'=>$user->id]);
+        return redirect()->route('users.edit',['user'=>$user->id]);
     }
 
     /**
